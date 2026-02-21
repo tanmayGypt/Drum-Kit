@@ -91,7 +91,9 @@ body {
 .s { background-image: url('./images/snare.png'); }
 .d { background-image: url('./images/tom1.png'); }
 .j { background-image: url('./images/tom2.png'); }
-.k { background-image: url('./images/tom3.png'); }
+.k {
+    background-image: url('./images/tom3.png'); /* This is correct */
+}
 .l { background-image: url('./images/tom4.png'); }
 
 /* Add a semi-transparent overlay to make text readable over images */
