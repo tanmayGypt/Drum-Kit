@@ -58,26 +58,34 @@ document.addEventListener("keydown", function(event) {
 // CLICK/TOUCH EVENT - Listen for clicks/touches on each button
 for (var i = 0; i < size; i++) {
     
-    // Mouse click event
+    // Mouse click event (no passive option needed for click)
     drumButtons[i].addEventListener("click", function() {
         var buttonInnerHTML = this.innerHTML;
         playSound(buttonInnerHTML);
         buttonAnimation(buttonInnerHTML);
     });
     
-    // Touch event for mobile devices - FIXED with passive: false
+    // Touch event for mobile devices - FIXED with proper options
     drumButtons[i].addEventListener("touchstart", function(e) {
-        e.preventDefault(); // Prevent default touch behavior (like scrolling)
+        e.preventDefault(); // Prevent default touch behavior
         var buttonInnerHTML = this.innerHTML;
         playSound(buttonInnerHTML);
         buttonAnimation(buttonInnerHTML);
-    }, { passive: false }); // ← Added this option to fix the violation
+    }, { passive: false }); // ← This eliminates the violation
 }
 
-// Fix for the k button background image (typo in your CSS)
-// Add this to your CSS or update the existing rule:
+// Alternative approach - if you want to avoid the warning entirely,
+// you can use both touch and click events without preventDefault:
 /*
-.k {
-    background-image: url('./images/tom3.png'); /* was background-color */
+for (var i = 0; i < size; i++) {
+    // This approach doesn't need preventDefault
+    drumButtons[i].addEventListener("click", function() {
+        var buttonInnerHTML = this.innerHTML;
+        playSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
+    });
+    
+    // For mobile, click works fine, so you might not need touchstart at all
+    // Modern mobile browsers trigger click events on tap
 }
 */
