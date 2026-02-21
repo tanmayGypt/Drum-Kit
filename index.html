@@ -29,7 +29,22 @@
       <p class="hint">Press keys or tap pads</p>
     </footer>
   </div>
-
+  <!-- Add this in the <head> section of your HTML -->
+<script>
+    // Suppress MetaMask connection errors
+    window.addEventListener('error', function(e) {
+        if (e.message && e.message.includes('MetaMask')) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    });
+    
+    window.addEventListener('unhandledrejection', function(e) {
+        if (e.reason && e.reason.message && e.reason.message.includes('MetaMask')) {
+            e.preventDefault();
+        }
+    });
+</script>
   <script src="script.js"></script>
 </body>
 </html>
