@@ -65,13 +65,13 @@ for (var i = 0; i < size; i++) {
         buttonAnimation(buttonInnerHTML);
     });
     
-    // Touch event for mobile devices
+    // Touch event for mobile devices - FIXED with passive: false
     drumButtons[i].addEventListener("touchstart", function(e) {
         e.preventDefault(); // Prevent default touch behavior (like scrolling)
         var buttonInnerHTML = this.innerHTML;
         playSound(buttonInnerHTML);
         buttonAnimation(buttonInnerHTML);
-    });
+    }, { passive: false }); // ← Added this option to fix the violation
 }
 
 // Fix for the k button background image (typo in your CSS)
